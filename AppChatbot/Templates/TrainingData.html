@@ -1,0 +1,159 @@
+ {% extends 'base.html'%}
+    {% block content%}
+
+    {% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+
+
+<div style="background: url('/media/img/images/home.jpg');background-repeat:no-repeat;background-size: cover;color: white;">
+<br>
+<br>
+<br>
+<div class="container" style="background-color: white;width: 50%;" >
+<form class="form-horizontal" action='/TrainingData/'  method="POST" id="form1">
+  {% csrf_token %}
+  <center>
+  <div>
+    <h2 style="color: black">Add Training Data</h2>
+    <hr>
+  </div>
+  </center> 
+
+
+
+
+  <div class="form-row">
+    <div class="col-md-12 "style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01">Main Keyword</label>
+      <input type="text" class="form-control" name="MainKeyword" id="MainKeyword" placeholder="Main Keyword" value="" required>
+      
+    </div>
+  </div>
+
+
+  <div class="col-md-12">
+     <br> 
+    <div class="form-group col-md-5">
+      <label style="color: black" for="inputEmail4">Helping keyword 1</label>
+      <input type="text" class="form-control" required="" name="Helpingkeyword1" id="Helpingkeyword1"  placeholder="Keyword 1">
+    </div>
+    <div class="col-md-1"></div>
+    <div class="form-group col-md-6">
+      <label style="color: black" for="inputPassword4">Helping keyword 2</label>
+      <input type="text" class="form-control" required="" name="Helpingkeyword2" id="Helpingkeyword2" placeholder="Keyword 2">
+    </div>
+  </div>
+
+
+  <div class="col-md-12">
+     <br> 
+    <div class="form-group col-md-5">
+      <label style="color: black" for="inputEmail4">Helping keyword 3</label>
+      <input type="text" class="form-control" required="" name="Helpingkeyword3" id="Helpingkeyword3"  placeholder="Keyword 3">
+    </div>
+    <div class="col-md-1"></div>
+    <div class="form-group col-md-6">
+      <label style="color: black" for="inputPassword4">Helping keyword 4</label>
+      <input type="text" class="form-control" required="" name="Helpingkeyword4" id="Helpingkeyword4" placeholder="Keyword 4">
+    </div>
+  </div>
+
+   <div class="form-row">
+    <div class="col-md-12 "style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01">Output</label>
+      <textarea class="form-control" rows="4" name="Output" id="Output" required="" placeholder="Output"></textarea>
+     
+      
+    </div>
+  </div>
+ 
+  <center>
+
+    <div class="col-md-12">
+         <br>
+  <input type="button" class="btn btn-primary"  name="add" id="add" value="Add" onclick="validate()">
+    <br>  <br>
+</div>
+</center>
+
+
+  </center>
+  <br>
+</form>
+ <br>
+</div>
+<br>
+<br>
+
+
+</div>
+<br> 
+
+<script type="text/javascript">
+    
+    function validate()
+    {     
+
+        if(document.getElementById('MainKeyword').value != '')
+        {
+            if(document.getElementById('Helpingkeyword1').value != '')
+            {
+                
+                if(document.getElementById('Helpingkeyword2').value != '')
+                {
+                    if(document.getElementById('Helpingkeyword3').value  != '')
+                    {
+                        if(document.getElementById('Helpingkeyword4').value != '')
+                        {
+
+                          if(document.getElementById('Output').value != '')
+                            {
+                                document.getElementById('form1').submit()
+                                return true;
+                            }
+                            else
+                            {
+                                alert("Please Enter the Output");
+                                return false;
+                            }
+                        }
+                        else
+                        {
+                            alert("Please Enter the keyword 4");
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        alert("Please Enter the keyword 3");
+                        return false;
+                    }
+                }
+                else
+                {
+                    alert("Please Enter the keyword 2");
+                    return false;
+                }
+
+            }
+            else
+            {
+                alert("Please Enter the keyword 1");
+                return false;
+            }
+        }           
+        else
+        {
+            alert("Please Enter the Main Keyword");
+            return false;
+        }
+        
+    }
+</script>
+{% endblock%}
+   
